@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+    <meta charset="UTF-8">
+    <title>Migrador</title>
+</head>
+<body>
+            <HR WIDTH="50%">
+
+    <div class="body-head">
+
+
+        <div class="title">
+            <p>Migrador Yabu-Choique a Wordpress</p>
+        </div>
+
+
+    <form action="{{ request.path }}" method="post">
+        <div class="subtitle">
+            <p>Destination database:</p>
+        </div>
+        {% csrf_token %}
+        <div class="form">
+            {{ form.message.errors }}
+            {{ form.name.label_tag }}
+            <div class="field">
+                {{ form.name }}
+            </div>
+            {{ form.host.label_tag }}
+            <div class="field">
+                {{ form.host }}
+            </div>
+            {{ form.user.label_tag }}
+            <div class="field">
+                {{ form.user }}
+            </div>
+            {{ form.password.label_tag }}
+            <div class="field">
+                {{ form.password }}
+            </div>
+            {{ form.port.label_tag }}
+            <div class="field">
+                {{ form.port }}
+            </div>
+            {{ form.page.label_tag }}
+            <div class="field">
+                {{ form.page }}
+            </div>
+            {{ form.clean_database.label_tag }}
+            <div class="field">
+                {{ form.clean_database }}
+            </div>
+            <input class="field" type="submit" value="Migrate">
+        </div>
+    </form>
+
+        {% for supplement in supplements %}
+            {{supplement.name}}
+        {% endfor %}
+        {% if pokemons %}
+        <p class="title">Resultado de la busqueda</p>
+        <ul>
+            {% for pokemon in pokemons %}
+            <li class="item"><img class="pokemon-image" src="{{ pokemon.image_url }}" alt="{{ pokemon.name }}"> <div class="pokemon-text">{{ pokemon.name }}</div> </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
